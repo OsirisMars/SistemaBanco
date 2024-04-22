@@ -2,6 +2,7 @@ saldo = 0
 num_saque = 0
 LIMITE_SAQUE = 3
 max_limite  = 500 #limite maximo de saque
+extrato = []
 
 
 while True:
@@ -22,6 +23,7 @@ while True:
             saldo = saldo - saque
             print("Valor sacado com sucesso!")
             print("Saldo: R$ {:.2f}".format(saldo))
+            extrato.append("Saldo Sacado: R$ -{:.2f}".format(saldo))
             num_saque += 1
         elif saque < 0:
             print("Valor de Saque inválido favor corrigir")
@@ -31,9 +33,14 @@ while True:
         deposito = float(input("Digite o valor a ser deposito: "))
         saldo = saldo + deposito
         print("Valor de Deposito com sucesso!")
+        extrato.append("Saldo Depositado: +R$ {:.2f}".format(saldo))
         print("Saldo: R$ {:.2f}".format(saldo))
     elif opcao == '3':
-        print("Hello WOrld")
+        if not extrato:
+            print("Não há extrato")
+        else:
+            for transacao in extrato:
+                print(f" - {transacao}")
     elif opcao == '0':
         print("Encerrando...")
         break
